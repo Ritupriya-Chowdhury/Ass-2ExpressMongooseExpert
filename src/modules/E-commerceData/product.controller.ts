@@ -23,6 +23,6 @@ const createProducts= async(req: Request, res:Response)=>{
 };
 
 
-export const productController= {
+export const ProductControllers= {
     createProducts,
 };
