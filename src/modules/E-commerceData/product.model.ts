@@ -1,5 +1,5 @@
 import { Schema, model, connect } from 'mongoose';
-import { Product } from './clothes.interface';
+import { Product } from './product.interface';
 
 const productSchema = new Schema({
     id: {
@@ -49,6 +49,6 @@ const productSchema = new Schema({
     }
   });
   
-  const Product = model('Product', productSchema);
+  export const ProductModel = model<'Product'>('Product',productSchema);
   
-  module.exports = Product;
+  
