@@ -23,7 +23,7 @@ const productSchema = new Schema({
       type: String,
       required: true
     },
-    tag: {
+    tags: {
       type: [String],
       required: true
     },
@@ -49,6 +49,6 @@ const productSchema = new Schema({
     }
   });
   
-  export const ProductModel = model<'Product'>('Product',productSchema);
+  export const ProductModel = model<Product>('Product',productSchema);
   
   

@@ -5,16 +5,16 @@ import { ProductServices } from "./product.service";
 const createProducts= async(req: Request, res:Response)=>{
     try{
 
-        const products=req.body
+        const {product: ProductData}=req.body
 
-    const result=await ProductServices.newProductsIntoDB(products)
+    const result=await ProductServices.newProductsIntoDB(ProductData)
 
     //send responses
 
     res.send(200).json({
         success:true,
         message: "Product created successfully!",
-        data: ReadableStreamDefaultController,
+        data:result,
     })
     }
     catch(err){
