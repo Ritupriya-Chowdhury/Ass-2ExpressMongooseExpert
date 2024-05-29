@@ -18,5 +18,8 @@ router.put('/products/:id', ProductControllers.updateProduct);
 //delete product route
 router.delete('/products/:id', ProductControllers.deleteProduct);
 
+// search product route
+router.get('/products?searchTerm=jeans', ProductControllers.searchProducts);
+
 
 export const ProductsRoute= router;

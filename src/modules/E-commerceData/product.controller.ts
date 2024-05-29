@@ -113,11 +113,39 @@ const deleteProduct = async (req: Request, res: Response) => {
 };
 
 
+// code for search product
+const searchProducts = async (req: Request, res: Response) => {
+    try {
+        const { searchTerm } = req.query;
+        if (!searchTerm) {
+            return res.status(400).json({
+                success: false,
+                message: 'searchTerm query parameter is required.',
+            });
+        }
+        const result = await ProductServices.searchProductsByTerm(searchTerm as string);
+        res.status(200).json({
+            success: true,
+            message: `Products matching search term '${searchTerm}' fetched successfully!`,
+            data: result,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to fetch products.',
+        });
+    }
+};
+
+
+
 
 export const ProductControllers = {
     createProducts,
     getAllProducts,
     getOneProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    searchProducts
 };
