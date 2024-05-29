@@ -3,6 +3,7 @@ import { ProductControllers } from './product.controller'
 
 const router=express.Router()
 
+
 // post product route
 router.post('/products',ProductControllers.createProducts);
 
@@ -18,8 +19,8 @@ router.put('/products/:id', ProductControllers.updateProduct);
 //delete product route
 router.delete('/products/:id', ProductControllers.deleteProduct);
 
-// search product route
-router.get('/products?searchTerm=jeans', ProductControllers.searchProducts);
+// Search products by term
+router.get('/products', ProductControllers.searchProducts);
 
 
 export const ProductsRoute= router;
