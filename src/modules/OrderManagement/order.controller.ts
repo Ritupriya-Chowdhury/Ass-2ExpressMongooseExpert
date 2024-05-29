@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { OrderServices } from "./order.service";
+import { orderJoiSchema } from "./orders.joi.validation";
 
 
 
@@ -10,6 +11,21 @@ const createOrders = async (req: Request, res: Response) => {
     try {
         const { order: OrderData } = req.body;
 
+       const {error,value}= orderJoiSchema.validate(OrderData);
+       console.log(error);
+       console.log(value);
+
+
+       if(error){
+        res.status(500).json({
+            success: false,
+            message: "Something want wrong.",
+            error:error.details
+           
+        });
+
+       }
+       else{
         const result = await OrderServices.newOrdersIntoDB(OrderData);
 
         // Send responses
@@ -18,6 +34,8 @@ const createOrders = async (req: Request, res: Response) => {
             message: "Order created successfully!",
             data: result,
         });
+
+       }
     } catch (err) {
         console.error(err);
         res.status(500).json({

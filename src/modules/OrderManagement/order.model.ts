@@ -8,7 +8,7 @@ const orderSchema = new Schema({
   email: {
     type: String,
     required: true,
-    match: [/.+@.+\..+/, 'Please enter a valid e-mail address']
+    
   },
   productId: {
     type: mongoose.Schema.Types.ObjectId,

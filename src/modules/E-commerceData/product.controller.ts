@@ -1,13 +1,30 @@
 import { Request, Response } from "express";
 import { ProductServices } from "./product.service";
-
+import { productJoiSchema } from "./products.joi.validation";
 
 
 // code for post product
 const createProducts = async (req: Request, res: Response) => {
     try {
+
+ 
         const { product: ProductData } = req.body;
 
+       const {error,value}= productJoiSchema.validate(ProductData );
+       console.log(error);
+       console.log(value);
+
+
+       if(error){
+        res.status(500).json({
+            success: false,
+            message: "Something want wrong.",
+            error:error.details
+           
+        });
+
+       }
+       else{
         const result = await ProductServices.newProductsIntoDB(ProductData);
 
         // Send responses
@@ -16,6 +33,10 @@ const createProducts = async (req: Request, res: Response) => {
             message: "Product created successfully!",
             data: result,
         });
+
+       }
+
+        
     } catch (err) {
         console.error(err);
         res.status(500).json({
