@@ -2,53 +2,53 @@ import { Schema, model, connect } from 'mongoose';
 import { Product } from './product.interface';
 
 const productSchema = new Schema({
-    id: {
-      type: String,
-      required: true,
-      unique: true
-    },
-    name: {
-      type: String,
-      required: true
-    },
-    description: {
-      type: String,
-      required: true
-    },
-    price: {
-      type: Number,
-      required: true
-    },
-    category: {
-      type: String,
-      required: true
-    },
-    tags: {
-      type: [String],
-      required: true
-    },
-    variants: [{
-      type: {
+  id: {
+    type: String,
+    required: true,
+    unique: true
+},
+name: {
+    type: String,
+    required: true
+},
+description: {
+    type: String,
+    required: true
+},
+price: {
+    type: Number,
+    required: true
+},
+category: {
+    type: String,
+    required: true
+},
+tags: {
+    type: [String],
+    required: true
+},
+variants: [{
+    type: {
         type: String,
         required: true
-      },
-      value: {
+    },
+    value: {
         type: String,
         required: true
-      }
-    }],
-    inventory: {
-      quantity: {
+    }
+}],
+inventory: {
+    quantity: {
         type: Number,
         required: true
-      },
-      inStock: {
+    },
+    inStock: {
         type: Boolean,
         required: true
-      }
     }
-  });
-  
-  export const ProductModel = model<Product>('Product',productSchema);
+}
+});
+
+export const ProductModel = model<Product>('Product', productSchema);
   
   

@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { Product } from "./product.interface";
 import { ProductModel } from "./product.model";
 
@@ -13,9 +14,39 @@ const getAllProductsFromDB = async()=>{
 
 }
 
+//get one product from db
+const getOneProductFromDB = async(id:string)=>{
+const result=await ProductModel.findOne({id});
+    return result;
 
-
-export const ProductServices={
-    newProductsIntoDB,
-    getAllProductsFromDB
 }
+
+// Update product by id
+const updateProductById = async (id: string, updateData: Partial<Product>) => {
+    const result = await ProductModel.findOneAndUpdate({ id }, updateData, { new: true });
+    if (!result) {
+        throw new Error('Product not found');
+    }
+    return result;
+};
+
+
+
+// Delete product by id
+const deleteProductById = async (id: string) => {
+    const result = await ProductModel.findOneAndDelete({ id });
+    if (!result) {
+        throw new Error('Product not found');
+    }
+    return result;
+};
+
+
+
+export const ProductServices = {
+    newProductsIntoDB,
+    getAllProductsFromDB,
+    getOneProductFromDB,
+    updateProductById,
+    deleteProductById 
+};

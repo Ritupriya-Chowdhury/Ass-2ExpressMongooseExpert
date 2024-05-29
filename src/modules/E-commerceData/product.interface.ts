@@ -2,7 +2,7 @@ import { Schema, model, connect } from 'mongoose';
 
 // 1. Create an interface representing a document in MongoDB.
 export type Product = {
-  id:string;
+ id:string;
   name: string;
   description: string;
   price:number;
