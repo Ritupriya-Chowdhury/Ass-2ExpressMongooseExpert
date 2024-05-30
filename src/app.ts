@@ -26,7 +26,7 @@ app.use((req:Request, res:Response, next:NextFunction) => {
 });
 
 const getAController = (req: Request, res: Response) => {
-  const a = 10;
+   const a = 10;
   res.json({ value: a }); 
 }
 
